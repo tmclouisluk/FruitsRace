@@ -31,7 +31,7 @@ function DrawChest(user){
 		//+money
 		var money = Math.round(Math.random()*50)*100;
 		string+="    <"+gameSpritesName[user]+" gets tons of nutritions("+money+").>";
-		sendMessage(string, 2000);
+		sendMessage(string, 5000);
 		playerMoneyControl(user, money);
 	}
 	else if (chance == 1)
@@ -45,7 +45,7 @@ function DrawChest(user){
 		if (roundNow < 0)
 			roundNow = 3;
 		string+="    <"+gameSpritesName[user]+" gets a chance to move "+step+" steps.>";
-		sendMessage(string, 2000, function(){
+		sendMessage(string, 5000, function(){
 			Move(user, step);
 			//isRandomEvent=0;
 		});
@@ -57,7 +57,7 @@ function TaxEvent(user){
 	var chanceofstrings = Math.round(Math.random()*10)%5;
 	var string=badstrings[chanceofstrings];
 	string+="    <"+gameSpritesName[user]+" has to pay tax: "+money+".>";
-	sendMessage(string, 2000);
+	sendMessage(string, 5000);
 	playerMoneyControl(user, -money);
 	playersState[user]=2;
 	if (playersMoney[roundNow] < 0 && isGameOver[roundNow]==0)
@@ -74,7 +74,7 @@ function GoodChanceCard(user){
 		//+money
 		var money = Math.round(Math.random()*50)*100;
 		string+="    <"+gameSpritesName[user]+" gets tons of nutritions("+money+").>";
-		sendMessage(string, 2000);
+		sendMessage(string, 5000);
 		playerMoneyControl(user, money);
 	}
 	else if (chance == 1)
@@ -88,7 +88,7 @@ function GoodChanceCard(user){
 		if (roundNow < 0)
 			roundNow = 3;
 		string+="    <"+gameSpritesName[user]+" gets a chance to move "+step+" steps.>";
-		sendMessage(string, 2000, function(){
+		sendMessage(string, 5000, function(){
 			Move(user, step);
 			// isRandomEvent=0;
 		});
@@ -100,7 +100,7 @@ function BadChanceCard(user){
     var chanceofstrings = Math.round(Math.random()*10)%5;
 	var string=badstrings[chanceofstrings];
 	string+="    <"+gameSpritesName[user]+" has to pay tax: "+money+".>";
-	sendMessage(string, 2000);
+	sendMessage(string, 5000);
 	playerMoneyControl(user, -money);
 	playersState[user]=2;
 	if (playersMoney[roundNow] < 0 && isGameOver[roundNow]==0)
