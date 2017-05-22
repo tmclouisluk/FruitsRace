@@ -181,9 +181,6 @@
 		systemData.audio.pause();
   	}
 
-
-
-	
 	function aLoop(){
 		var d=new Date();
 		t=d.getTime();

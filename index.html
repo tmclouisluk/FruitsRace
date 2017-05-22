@@ -4,42 +4,102 @@
 <head>
 	<title>Fruits Race Monopoly</title>
 	<script src="scripts/JEngine.js"></script>
-	<script src="scripts/background.js"></script>
-	<script src="scripts/main.js"></script>
-	
+	<script src="scripts/GameUI.js"></script>
+	<script src="scripts/GameData.js"></script>
+	<script src="scripts/GameLogic.js"></script>
+	<script src="scripts/Background.js"></script>
+	<script src="scripts/Init.js"></script>
+	<script src="scripts/ChestAndChance.js"></script>
+	<script src="scripts/Main.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/sunny/jquery-ui.css" />
 	<style>
+		body{
+			font-family: "CalibriRegular",Arial, sans-serif;
+			font-size: 16px;
+			background-color: #FBD6DB;
+		}
+		#main{
+			width: 650px;
+			margin:0px auto;
+		}
 		canvas {
-		position: absolute;
-		top: 0px;
-		left: 0px;
-		background: transparent;
+			position: absolute;
+			top: 0px;
+
+			background: transparent;
 		}
 		#background {
-		z-index: -2;
+			z-index: -2;
 		}
 		#game {
-		z-index: -1;
+			z-index: -1;
+		}
+		#display {
+			z-index: -3;
+		}
+		table, th, td {
+
+		    border-collapse: collapse;
+		}
+		table td{
+			padding-right:10px;
+			padding-bottom:10px;
+		}
+		.white{
+			width: 70px;
+			background-color:white;
 		}
 	</style>
 </head>
 
 <body>
+	<div id="table">
+		<table>
+			<tr><td style="background-color:#F2B1B7">Place Name</td><td class="white">Cost</td></tr>
+			<tr><td style="background-color:#98A2D1">Water</td><td class="white">1200</td></tr>
+			<tr><td style="background-color:#37673F">Vitamin A</td><td class="white">2000</td></tr>
+			<tr><td style="background-color:#BA3340">Vitamin B</td><td class="white">2800</td></tr>
+			<tr><td style="background-color:#F26422">Vitamin C</td><td class="white">3600</td></tr>
+			<tr><td style="background-color:#F9A01B">Vitamin D</td><td class="white">4400</td></tr>
+			<tr><td style="background-color:#D56E7E">Vitamin E</td><td class="white">5200</td></tr>
+			<tr><td style="background-color:#9669A4">Potassium (K)</td><td class="white">6000</td></tr>
+			<tr><td style="background-color:#855914">Fibers</td><td class="white">7000</td></tr>
+			<tr><td style="background-color:#D7D6CB">Calcium (Ca)</td><td class="white">4000</td></tr>
+			<tr><td style="background-color:#DAD7C5">Sodium</td><td class="white">4000</td></tr>
+			<tr><td style="background-color:#4D4D4F">Iron</td><td class="white">4000</td></tr>
+			<tr><td style="background-color:#999889">Zinc</td><td class="white">4000</td></tr>
+		</table>
+	</div>
 	<div id="main">
-    	<canvas id="background" width="650" height="790"></canvas>
+		<canvas id="background" width="650" height="790"></canvas>
 		<canvas id="game" width="650" height="790"></canvas>
-		<input type="button" onclick="RollDice(usingPlayer);" value="Roll">
-    </div>
+		<canvas id="display" width="650" height="790"></canvas>
+		<div id="dialog-confirm" title="Confirmation"></div>
+		<div id="dialog-message" title="Game Message"></div>
+		<input type="hidden" id="currentUser" name="currentUser" />
+	</div>
 	<script>
-	SystemSetup("game",null,paint,mouseDownHandler,keyPressHandler);
-
-	var sources = {
-        board: "images/board.png",
-        frame: "images/frame.png"
-    };
-	SetupBackground(sources, DrawBackground);
-	//loadImage("images/board.png",initBoard);
-	//loadImage("images/frame.png",initFrame);
-	loadImage("images/characters.png",init);
+		$(function() {
+			SystemSetup("game", null, paint, mouseDownHandler, keyPressHandler);
+			
+			var sourcesforstart = {
+				title: "images/title.png",
+				queen: "images/queen.png",
+				start: "images/Start.png",
+			};
+			SetupBackground(sourcesforstart, DrawBackground);
+			
+	
+			var sources = {
+				board: "images/board.png",
+				frame: "images/frame.png"
+			};
+			//SetupBackground(sources, startGame);
+			//loadImage("images/characters.png", init);
+			//loadImage("images/characters_n.png", initWin);
+		});
 	</script>
 
 </body>
